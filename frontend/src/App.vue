@@ -1,9 +1,9 @@
 <script setup>
-import {ref, reactive, watch} from "vue";
+import {ref, reactive, watch, onMounted} from "vue";
 
 const operator = ref("+")
-const valueA = ref()
-const valueB = ref()
+const valueA = ref(0)
+const valueB = ref(0)
 const result = ref()
 
 
@@ -20,13 +20,19 @@ const calculate = async () => {
   await response.json().then(re => result.value = re["result"]);
 }
 
+onMounted(
+    requestOptions.body = JSON.stringify({
+      "operators": [operator.value],
+      "operands": [Number(valueA.value), Number(valueB.value)]
+    })
+)
 </script>
 
 <template>
 
   <main>
     <div class="calculator">
-      <input type="text" required v-model="valueA"/>
+      <input type="number" required v-model="valueA"/>
       <select v-model="operator">
         <option>+</option>
         <option>-</option>
@@ -34,8 +40,8 @@ const calculate = async () => {
         <option>/</option>
       </select>
       <input type="number" v-model="valueB"/>
-      =
-      <input type="number" v-model="result"/>
+      <p>=</p>
+      <input type="number" v-model="result" disabled/>
       <button @click="calculate">Count</button>
     </div>
   </main>
