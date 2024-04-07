@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.cors import CORSMiddleware
 
 from controller import CalculationContext
+from models import Operation
 
 app = FastAPI()
 app.add_middleware(
@@ -27,8 +28,6 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
 
 @app.post("/calculate")
-async def calculate(request: Request):
-    body = await request.body()
-    operation = json.loads(body.decode("utf-8"))
-    context = CalculationContext(operators=operation["operators"], values=operation["operands"])
+async def calculate(operation: Operation, app_id: str):
+    context = CalculationContext(operators=operation.operators, values=operation.operands)
     return {"result": context.make_calculation()}

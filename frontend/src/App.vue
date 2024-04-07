@@ -16,7 +16,7 @@ const requestOptions = reactive({
   headers: {'accept': 'application/json', 'Content-Type': 'application/json', 'Access-Control-Allow-Headers': '*'},
 });
 const calculate = async () => {
-  const response = await fetch(`http://127.0.0.1:8000/calculate`, requestOptions)
+  const response = await fetch(`http://127.0.0.1:8000/calculate?app_id=AppID`, requestOptions)
   await response.json().then(re => result.value = re["result"]);
 }
 
