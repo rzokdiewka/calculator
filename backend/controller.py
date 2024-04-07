@@ -30,7 +30,8 @@ class Division(CalculationStrategy):
 class CalculationContext:
 
     def __init__(self, operators: list[str], values: list[float]):
-        self.values = values
+        self.values: list[float] = values
+        self.operators: list[str] = operators
         self.calculation_strategy: CalculationStrategy = self.select_strategy(operators[0])
 
     def set_calculation_strategy(self, operators: list[str]):
