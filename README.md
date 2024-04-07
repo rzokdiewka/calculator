@@ -14,7 +14,7 @@ Run project with
 ```sh
 uvicorn main:app --reload
 ```
-
+>Swagger dokumentation of API http://127.0.0.1:8000/docs#/ should be available
 ### Frontend
 >Recommended IDE Setup: [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).  
 >Customize configuration: See [Vite Configuration Reference](https://vitejs.dev/config/).
