@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class CalculationStrategy(ABC):
     @abstractmethod
     def calculate(self, values: list[float]) -> float:
-        pass
+        raise NotImplementedError
 
 
 class Addition(CalculationStrategy):
